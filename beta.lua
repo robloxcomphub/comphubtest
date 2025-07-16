@@ -843,13 +843,13 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
     end
 end)
 
- = false
+local dragging = false
 local dragInput, dragStart, startPos
 
 TitleBar.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
         dragging = true
-        draglocal draggingStart = input.Position
+        dragStart = input.Position
         startPos = Frame.Position
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
@@ -1389,41 +1389,27 @@ UIS.InputBegan:Connect(function(input, gameProcessedEvent)
     end
 end)
 
-local UIS = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-
 local dragging = false
-local dragStart
-local startPos
+local dragInput, dragStart, startPos
 
 TitleBar.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
         dragging = true
         dragStart = input.Position
         startPos = Frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
     end
 end)
 
-UIS.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = false
+TitleBar.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
     end
 end)
-
-RunService.Heartbeat:Connect(function()
-    if dragging then
-        local delta = UIS:GetMouseLocation() - dragStart
-        -- Adjust delta for topbar offset
-        delta = Vector2.new(delta.X, delta.Y - 36)
-        Frame.Position = UDim2.new(
-            startPos.X.Scale,
-            startPos.X.Offset + delta.X,
-            startPos.Y.Scale,
-            startPos.Y.Offset + delta.Y
-        )
-    end
-end)
-
 
 UIS.InputChanged:Connect(function(input)
     if input == dragInput and dragging then
