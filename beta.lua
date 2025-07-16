@@ -700,28 +700,9 @@ end
 
 equipInvisibilityCloak()
 
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local backpack = player:WaitForChild("Backpack")
+local tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Invisibility Cloak")
+if tool then tool:Activate() end
 
-local tool = backpack:FindFirstChild("Invisibility Cloak")
-if not tool then
-    warn("Tool not found!")
-    return
-end
-
-tool.Parent = character
-
-task.wait(0.2) -- slight delay to make sure it's equipped
-
-if tool:IsA("Tool") and tool:FindFirstChild("Activate") then
-    tool:Activate()
-elseif tool:IsA("Tool") then
-    tool:Activate()
-else
-    warn("Tool is not activatable")
-end
 
         TweenStealButton.Text = "Speed ON"
         TweenStealButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
