@@ -759,7 +759,7 @@ RejoinButton.MouseButton1Click:Connect(function()
 end)
 
 LeaveButton.MouseButton1Click:Connect(function()
-    game:GetService("Players").LocalPlayer:Kick("You left the game.")
+    game:GetService("Players").LocalPlayer:Kick("so sigma leave fr, u better have stolen something good to use the leave button")
 end)
 
 
