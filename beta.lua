@@ -1,3 +1,17 @@
+local oldGui = game.CoreGui:FindFirstChild("ScriptToLoad")
+if oldGui then
+    oldGui:Destroy()
+end
+
+
+
+local TweenService = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
 local key = "comp hub"
 local discordLink = "https://discord.gg/Gw8ksGU9zA"
 local scriptToLoad = [[
@@ -534,7 +548,7 @@ TweenStealButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TweenStealButton.Position = UDim2.new(0.1, 0, 0.55, 0)
 TweenStealButton.Size = UDim2.new(0.8, 0, 0, 50)
 TweenStealButton.Font = Enum.Font.GothamSemibold
-TweenStealButton.Text = "OP speed (requires invisibility qloak)"
+TweenStealButton.Text = "OP speed (requires invisibility cloak)"
 TweenStealButton.TextSize = 18
 TweenStealButton.TextWrapped = true
 TweenStealButton.TextTransparency = 1
@@ -683,6 +697,15 @@ local function equipInvisibilityCloak()
     local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local backpack = LocalPlayer:WaitForChild("Backpack")
     local cloak = backpack:FindFirstChild("Invisibility Cloak")
+    
+local vim = game:GetService("VirtualInputManager")
+
+local x, y = 500, 300 -- screen coordinates (in pixels)
+
+-- Simulate one click (mouse down + mouse up)
+vim:SendMouseButtonEvent(x, y, 0, true, game, 0)  -- mouse down
+vim:SendMouseButtonEvent(x, y, 0, false, game, 0) -- mouse up
+
 
     if cloak then
         cloak.Parent = character
