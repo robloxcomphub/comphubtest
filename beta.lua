@@ -1,78 +1,3 @@
-
--- Updated full script with mobile and PC draggable GUI
-
-local TweenService = game:GetService("TweenService")
-local UIS = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-local Lighting = game:GetService("Lighting")
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local PlayerGui = Player:WaitForChild("PlayerGui")
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "comp hub"
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.IgnoreGuiInset = true
-ScreenGui.DisplayOrder = 999
-ScreenGui.Parent = PlayerGui
-
-local Frame = Instance.new("Frame")
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 15)
-Frame.BorderSizePixel = 0
-Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(0, 450, 0, 320)
-Frame.ClipsDescendants = true
-Frame.BackgroundTransparency = 0
-
-local TitleBar = Instance.new("Frame")
-TitleBar.Name = "TitleBar"
-TitleBar.Parent = Frame
-TitleBar.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-TitleBar.BorderSizePixel = 0
-TitleBar.Size = UDim2.new(1, 0, 0, 40)
-TitleBar.ZIndex = 2
-
--- Mobile & PC draggable logic (working)
-local dragging = false
-local dragStart, startPos
-
-TitleBar.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = Frame.Position
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-RunService.Heartbeat:Connect(function()
-    if dragging then
-        local mousePos = UIS:GetMouseLocation()
-        local delta = mousePos - dragStart
-        delta = Vector2.new(delta.X, delta.Y - 36)
-        Frame.Position = UDim2.new(
-            startPos.X.Scale,
-            startPos.X.Offset + delta.X,
-            startPos.Y.Scale,
-            startPos.Y.Offset + delta.Y
-        )
-    end
-end)
-
-
-local TweenService = game:GetService("TweenService")
-local UIS = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-local Lighting = game:GetService("Lighting")
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-
 local key = "comp hub"
 local discordLink = "https://discord.gg/Gw8ksGU9zA"
 local scriptToLoad = [[
@@ -767,11 +692,7 @@ local function equipInvisibilityCloak()
 end
 
 equipInvisibilityCloak()
-
-local tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Invisibility Cloak")
-if tool then tool:Activate() end
-
-
+   
         TweenStealButton.Text = "Speed ON"
         TweenStealButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
         applySpeed()
