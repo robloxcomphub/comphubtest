@@ -1,10 +1,3 @@
-local oldGui = game.CoreGui:FindFirstChild("ScriptToLoad")
-if oldGui then
-    oldGui:Destroy()
-end
-
-
-
 local TweenService = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -548,9 +541,49 @@ TweenStealButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TweenStealButton.Position = UDim2.new(0.1, 0, 0.55, 0)
 TweenStealButton.Size = UDim2.new(0.8, 0, 0, 50)
 TweenStealButton.Font = Enum.Font.GothamSemibold
-TweenStealButton.Text = "OP speed (requires invisibility cloak)"
+TweenStealButton.Text = "OP speed (requires invisibility qloak)"
 TweenStealButton.TextSize = 18
 TweenStealButton.TextWrapped = true
+-- REJOIN Button
+local RejoinButton = Instance.new("TextButton")
+RejoinButton.Name = "RejoinButton"
+RejoinButton.Parent = ScreenGui
+RejoinButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+RejoinButton.BackgroundTransparency = 0.3
+RejoinButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+RejoinButton.Position = UDim2.new(1, -160, 0, 20)
+RejoinButton.AnchorPoint = Vector2.new(0, 0)
+RejoinButton.Size = UDim2.new(0, 70, 0, 35)
+RejoinButton.Font = Enum.Font.GothamSemibold
+RejoinButton.Text = "REJOIN"
+RejoinButton.TextSize = 14
+RejoinButton.TextWrapped = true
+RejoinButton.AutoButtonColor = true
+
+local UICorner_Rejoin = Instance.new("UICorner")
+UICorner_Rejoin.CornerRadius = UDim.new(0, 8)
+UICorner_Rejoin.Parent = RejoinButton
+
+-- LEAVE Button
+local LeaveButton = Instance.new("TextButton")
+LeaveButton.Name = "LeaveButton"
+LeaveButton.Parent = ScreenGui
+LeaveButton.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+LeaveButton.BackgroundTransparency = 0.3
+LeaveButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+LeaveButton.Position = UDim2.new(1, -80, 0, 20)
+LeaveButton.AnchorPoint = Vector2.new(0, 0)
+LeaveButton.Size = UDim2.new(0, 70, 0, 35)
+LeaveButton.Font = Enum.Font.GothamSemibold
+LeaveButton.Text = "LEAVE"
+LeaveButton.TextSize = 14
+LeaveButton.TextWrapped = true
+LeaveButton.AutoButtonColor = true
+
+local UICorner_Leave = Instance.new("UICorner")
+UICorner_Leave.CornerRadius = UDim.new(0, 8)
+UICorner_Leave.Parent = LeaveButton
+
 TweenStealButton.TextTransparency = 1
 TweenStealButton.AutoButtonColor = false
 
@@ -697,15 +730,6 @@ local function equipInvisibilityCloak()
     local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local backpack = LocalPlayer:WaitForChild("Backpack")
     local cloak = backpack:FindFirstChild("Invisibility Cloak")
-    
-local vim = game:GetService("VirtualInputManager")
-
-local x, y = 500, 300 -- screen coordinates (in pixels)
-
--- Simulate one click (mouse down + mouse up)
-vim:SendMouseButtonEvent(x, y, 0, true, game, 0)  -- mouse down
-vim:SendMouseButtonEvent(x, y, 0, false, game, 0) -- mouse up
-
 
     if cloak then
         cloak.Parent = character
@@ -727,6 +751,17 @@ equipInvisibilityCloak()
         print("Speed Boost Deactivated")
     end
 end)
+
+RejoinButton.MouseButton1Click:Connect(function()
+    local TeleportService = game:GetService("TeleportService")
+    local Players = game:GetService("Players")
+    TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+end)
+
+LeaveButton.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer:Kick("You left the game.")
+end)
+
 
 LocalPlayer.CharacterAdded:Connect(function(newChar)
     Character = newChar
