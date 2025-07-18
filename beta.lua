@@ -791,29 +791,6 @@ vim:SendMouseButtonEvent(x, y, 0, false, game, 0) -- mouse up
         TweenStealButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
         applySpeed()
         print("Speed Boost Activated")
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character
-local backpack = player:WaitForChild("Backpack")
-
-if not character then
-    warn("Character not found!")
-    return
-end
-
-local tool = character:FindFirstChild("Invisibility Cloak")
-if not tool then
-    warn("Invisibility Cloak is not equipped!")
-    return
-end
-
-if not tool:IsA("Tool") then
-    warn("Invisibility Cloak is not a valid tool!")
-    return
-end
-
-tool.Parent = backpack
-print("Invisibility Cloak unequipped successfully.")
     else
         TweenStealButton.Text = "Speed OFF"
         TweenStealButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
