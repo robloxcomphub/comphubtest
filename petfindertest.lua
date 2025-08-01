@@ -96,9 +96,10 @@ local function scanPets(targetPets, webhookURL)
                 },
                 {
                     name = "📜 Join Script Mobile",
-                    value = ("```lua\ngame:GetService(\"TeleportService\"):TeleportToPlaceInstance(%d, \"%s\", game.Players.LocalPlayer)\n```"):format(placeId, jobId),
+                    value = ("`game:GetService(\"TeleportService\"):TeleportToPlaceInstance(%d, \"%s\", game.Players.LocalPlayer)`"):format(placeId, jobId),
                     inline = false
                 },
+
                 {
                     name = "📜 Join Script PC",
                     value = ("```lua\ngame:GetService(\"TeleportService\"):TeleportToPlaceInstance(%d, \"%s\", game.Players.LocalPlayer)\n```"):format(placeId, jobId),
