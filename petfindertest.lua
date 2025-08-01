@@ -86,7 +86,7 @@ local function scanPets(targetPets, webhookURL)
             fields = {
                 {
                     name = "🆔 JOBID Mobile",
-                    value = jobId,
+                    value = "`" .. jobId .. "`",
                     inline = true
                 },
                 {
