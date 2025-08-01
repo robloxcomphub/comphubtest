@@ -8,7 +8,7 @@ local DiscordProxyURL_B = "https://tight-sound-3e80.simbaerenhund.workers.dev/"
 
 -- Pet groups
 local groupA = {
-    "Cocofanto Elefanto", "Girafa Celestre", "Gattatino Neonino", "Matteo", "Tralalero Tralala",
+    "Noobini Pizzanini", "Girafa Celestre", "Gattatino Neonino", "Matteo", "Tralalero Tralala",
     "Los Crocodillitos", "Espresso Signora", "Odin Din Din Dun", "Statutino Libertino",
     "Trenostruzzo Turbo 3000", "Ballerino Lololo", "Piccione Macchina", "Tigroligre Frutonni",
     "Orcalero Orcala", "La Vacca Saturno Saturnita", "Chimpanzini Spiderini", "Los Tralaleritos",
@@ -80,7 +80,7 @@ local function scanPets(targetPets, webhookURL)
         end
 
         SendMessageEMBED(webhookURL, {
-            title = "🧠 Brainrot Notify | Pulsar X",
+            title = "🧠 Pet finder | Comp Hub",
             description = petList,
             color = 65280,
             fields = {
