@@ -29,7 +29,10 @@ end
 
 -- Send embed to Discord via proxy
 local function SendMessageEMBED(url, embed)
-    local headers = { ["Content-Type"] = "application/json" }
+    local headers = {
+    ["Content-Type"] = "application/json",
+    ["x-comp-key"] = "92d173ab8e5b4f8ca94aef0a0f22f98e"
+}
     local body = HttpService:JSONEncode({ embeds = { embed } })
 
     local success, response = pcall(function()
